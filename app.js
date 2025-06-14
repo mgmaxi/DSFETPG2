@@ -77,9 +77,9 @@ console.log('______________');
 console.log('Solucion 6');
 
 console.log('Solucion 7');
+ */
 
 console.log('Solucion 8');
- */
 
 const productos = [
   {
@@ -101,28 +101,34 @@ const productos = [
   { id: 5, nombre: 'Libro', precio: 15, stock: 100, categoria: 'libros' },
 ];
 // 1. Usando forEach: Mostrar en consola cada producto con su nombre y precio
+/* con el método forEach recorremos cada elemento del array de objetos y mostramos por cada uno solo la propiedad nombre y precio */
 
 productos.forEach((element) =>
   console.log(
     'Nombre producto: ' + element.nombre + ' - Precio: $' + element.precio
   )
 );
+
 // 2. Usando map: Crear un array con solo los nombres de los productos
+/* con el método map recorremos el array de productos y devolvemos un nuevo array de strings que contiene solo la propiedad nombre de cada uno */
 
 const nombreDeProductos = productos.map((e) => e.nombre);
 console.log(nombreDeProductos);
 
 // 3. Usando filter: Obtener productos electrónicos con stock mayor a 20
+/* con el método filter, obtenemos un nuevo array solo con los objetos que cumplan la condicion que indicamos, en este caso que sea el valor de la propiedad stock mayor a 20 */
 
 const productosElectronicosMasDe20Stock = productos.filter((e) => e.stock > 20);
 
 console.log(productosElectronicosMasDe20Stock);
 
 // 4. Usando find: Encontrar el producto con id 3
+/* con el método find encontramos el objeto que tiene id 3 y lo devolvemos */
 
 console.log(productos.find((e) => (e.id = 3)));
 
 // 5. Usando reduce: Calcular el valor total del inventario (precio * stock)
+/* con el método reduce usamos el acumulador para ir sumando el resultado de la multiplicacion de los valores de la propiedad precio y stock de cada objeto, el 0 que esta como segundo argumento indica desde donde se inicia a acumular */
 
 const valorTotalInventario = productos.reduce(
   (acumulador, producto) => acumulador + producto.precio * producto.stock,
@@ -130,3 +136,5 @@ const valorTotalInventario = productos.reduce(
 );
 
 console.log(valorTotalInventario);
+
+console.log('______________');
