@@ -53,7 +53,25 @@ console.log(
 
 console.log('______________');
 
-/* console.log('Solucion 4');  */
+const esPalindromo = (string) => {
+  const sinEspacios = string.split(' ').join('').toLowerCase();
+  return sinEspacios === sinEspacios.split('').reverse().join('');
+}
+
+/* recibo el string por parametro, elimino los espacios usando split, uno todo con join, y convierto todo en minuscula con toLowerCase para evitar errores por mayusculas, guardandolo en una nueva constante. Luego comparo esa constante con su versión invertida, que obtengo convirtiendola en un array de caracteres con split, invirtiendo el orden con reverse y volviendo a unirlo en un string con join. Si ambos strings son iguales, significa que es un palíndromo, por lo que devuelve true; de lo contrario, false. */
+
+console.log('Solucion 4')
+
+console.log(
+  'Resultado 1: ' +
+  esPalindromo('neuquen') +
+  '\nResultado 2: ' +
+  esPalindromo('reconocer o Reconocer ') +
+  '\nResultado 3: ' +
+  esPalindromo('fallar')
+);
+
+console.log('______________');
 
 const edadCanina = () => prompt('Ingresa tu edad') * 7;
 
@@ -73,11 +91,52 @@ console.log(
 
 console.log('______________');
 
-/*
+const capitalizarPalabras = (string) => {
+  return string
+    .split(' ')
+    .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
+    .join(' ');
+}
+
+/* recibo un string por parametro, lo divido en un array de palabras usando split, luego uso map para seleccionar la primer letra de cada palabra con charAt(0), tranformarla en mayuscula y agregarle el resto de los caracteres en el formato original con slice(1). Finalmente, uno todas las palabras transformadas en un solo string usando join con espacios, y retorno ese resultado. */
+
 console.log('Solucion 6');
 
+console.log(
+  'Resultado 1: ' +
+  capitalizarPalabras("hola mundo desde javascript") +
+  '\nResultado 2: ' +
+  capitalizarPalabras("capitalizando palabras con javascript") +
+  '\nResultado 3: ' +
+  capitalizarPalabras("practicando funciones el fin de semana")
+);
+
+console.log('______________');
+
+const fibonacci = (n) => {
+  const numeros = [];
+  for (let i = 0; i < n; i++) {
+    if (i == 0) numeros.push(0);
+    else if (i == 1) numeros.push(1);
+    else numeros[i] = numeros[i -1] + numeros[i - 2];
+  }
+  return numeros;
+}
+
+/* recibo un numero n por parametro, creo un array vacio para guardar los valores de la sucesion que se crean en el bucle for que se repite n veces. En cada vuelta, si es la primera posicion agrego 0, si es la segunda agrego 1, y a partir de ahi voy sumando los dos ultimos valores del array para obtener el siguiente numero de Fibonacci, una vez que el bucle termina retorno el array con los primeros n numeros de la sucesion. */
+
 console.log('Solucion 7');
- */
+
+console.log(
+  'Resultado 1: ' +
+  fibonacci(5) +
+  '\nResultado 2: ' +
+  fibonacci(1) +
+  '\nResultado 3: ' +
+  fibonacci(12)
+)
+
+console.log('______________');
 
 console.log('Solucion 8');
 
@@ -125,7 +184,7 @@ console.log(productosElectronicosMasDe20Stock);
 // 4. Usando find: Encontrar el producto con id 3
 /* con el método find encontramos el objeto que tiene id 3 y lo devolvemos */
 
-console.log(productos.find((e) => (e.id = 3)));
+console.log(productos.find((e) => (e.id === 3)));
 
 // 5. Usando reduce: Calcular el valor total del inventario (precio * stock)
 /* con el método reduce usamos el acumulador para ir sumando el resultado de la multiplicacion de los valores de la propiedad precio y stock de cada objeto, el 0 que esta como segundo argumento indica desde donde se inicia a acumular */
@@ -138,3 +197,69 @@ const valorTotalInventario = productos.reduce(
 console.log(valorTotalInventario);
 
 console.log('______________');
+
+console.log('Solucion 9');
+
+const estudiantes = [
+  { id: 1, nombre: 'Ana', edad: 20, calificaciones: [8, 9, 7, 8] },
+  { id: 2, nombre: 'Carlos', edad: 22, calificaciones: [6, 7, 8, 7] },
+  { id: 3, nombre: 'María', edad: 21, calificaciones: [9, 9, 8, 10] },
+  { id: 4, nombre: 'Juan', edad: 19, calificaciones: [7, 6, 5, 8] }
+];
+
+// 1. Usando forEach: Mostrar nombre y edad de cada estudiante
+/* con el metodo forEach recorro el array de objetos y muestro por consola solo el nombre y edad de cada estudiante. */
+
+estudiantes.forEach(estudiante => {
+  console.log(`Estudiante: ${estudiante.nombre} - Edad: ${estudiante.edad}`)
+});
+
+// 2. Usando map: Crear array de objetos con nombre y promedio de calificaciones
+/* con el metodo map recorro el array de objetos y por cada estudiante calculo su promedio de calificaciones utilizando reduce para sumar y divido la suma por la cantidad de calificaciones. Luego creo una nueva cadena que contiene el nombre del estudiante y su promedio. */
+
+const estudiantesConPromedio = estudiantes.map(estudiante => {
+  const promedio = estudiante.calificaciones.reduce((suma, nota) => suma + nota, 0) / estudiante.calificaciones.length;
+  return `Estudiante: ${estudiante.nombre} - Promedio: ${promedio}`;
+});
+
+console.log(estudiantesConPromedio);
+
+// 3. Usando filter: Obtener estudiantes con promedio mayor a 7.5
+/* con el metodo filter recorro el array de objetos y por cada estudiante calculo su promedio de calificaciones utilizando reduce. Luego comparo ese promedio con el valor 7.5, y si es mayor lo incluyo en el nuevo array que devuelve el metodo. */
+
+const estudiantesConPromedioMayor7_5 = estudiantes.filter(estudiante => {
+  const promedio = estudiante.calificaciones.reduce((suma, nota) => suma + nota, 0) / estudiante.calificaciones.length;
+  return promedio > 7.5;
+});
+
+console.log(estudiantesConPromedioMayor7_5);
+
+// 4. Usando find: Encontrar estudiante llamado 'María'
+/* con el metodo find recorro el array para encontrar el primer estudiante que tenga el nombre "María" y en caso de encontrar uno lo devuelvo. */
+
+console.log(estudiantes.find(e => e.nombre === 'María'));
+
+// 5. Usando reduce: Calcular la edad promedio de los estudiantes
+/* con el metodo reduce recorro el array y voy sumando la edad de cada estudiante en un acumulador inicializado en 0, luego divido esa suma por la cantidad de estudiantes que obtengo con length para asi conseguir el promedio. */
+
+const edadPromedioEstudiantes = estudiantes.reduce((suma, estudiante) => suma + estudiante.edad, 0) / estudiantes.length;
+
+console.log(`Edad promedio de los estudiantes: ${edadPromedioEstudiantes}`);
+
+console.log('______________');
+
+console.log('Solucion 10');
+
+const peliculas = [
+  { id: 1, titulo: 'El Padrino', año: 1972, duracion: 175, genero: 'drama', rating: 9.2 },
+  { id: 2, titulo: 'Pulp Fiction', año: 1994, duracion: 154, genero: 'crimen', rating: 8.9 },
+  { id: 3, titulo: 'El Señor de los Anillos', año: 2001, duracion: 178, genero: 'fantasía', rating: 8.8 },
+  { id: 4, titulo: 'Interestelar', año: 2014, duracion: 169, genero: 'ciencia ficción', rating: 8.6 },
+  { id: 5, titulo: 'Parásitos', año: 2019, duracion: 132, genero: 'drama', rating: 8.6 }
+];
+
+// 1. Usando forEach: Mostrar título y año de cada película
+// 2. Usando map: Crear array de títulos en mayúsculas
+// 3. Usando filter: Obtener películas de drama con rating mayor a 8.5
+// 4. Usando find: Encontrar película estrenada en 2014
+// 5. Usando reduce: Calcular la duración total de todas las películas
