@@ -259,7 +259,38 @@ const peliculas = [
 ];
 
 // 1. Usando forEach: Mostrar título y año de cada película
+/* Recorremos el array películas y mostramos el título y el año de cada una.*/
+
+peliculas.forEach(p => 
+  console.log(`Título: "${p.titulo}" - Año: ${p.año}`)
+);
+
 // 2. Usando map: Crear array de títulos en mayúsculas
+/* Generamos un nuevo array transformando los títulos a mayúsculas utilizando el método toUpperCase. */
+
+const titulosMayus = peliculas.map(p => p.titulo.toUpperCase());
+console.log(`Titulos en MAYUSCULAS:`, titulosMayus);
+
 // 3. Usando filter: Obtener películas de drama con rating mayor a 8.5
+/* Creamos un nuevo array con dos condiciones, género: drama y rating >8.5. */
+
+const dramasTop = peliculas.filter(
+  p => p.genero === 'drama' && p.rating >8.5
+);
+console.log('Dramas con rating > 8.5:', dramasTop);
+
 // 4. Usando find: Encontrar película estrenada en 2014
+/* Buscamos en el array la primera película cuyo año de estreno sea 2014.
+El método find devuelve el primer elemento que cumple con la condición. 
+Si no existiese, obtendríamos undefined. */
+
+const estreno2014 = peliculas.find(p => p.año === 2014);
+console.log('Película estrenada en 2014:', estreno2014);
+
 // 5. Usando reduce: Calcular la duración total de todas las películas
+/* Calculamos la suma de las duraciones de todas las películas. Reduce acumula el valor total, empezando desde 0. */
+const duracionTotal = peliculas.reduce(
+  (acum, p) => acum + p.duracion, 0
+);
+console.log('Duración total de todas las peliculas (minutos):', duracionTotal);
+console.log('______________');
